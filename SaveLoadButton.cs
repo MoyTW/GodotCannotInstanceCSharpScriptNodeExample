@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public class SaveLoadCSharpScriptScene : Button {
-  private static PackedScene _scenePrefab = GD.Load<PackedScene>("res://CSharpScriptScene.tscn");
-
+public class SaveLoadButton : Button {
+  [Export]
+  private string _scenePrefabPath;
   private string _fileLocation;
 
   public override void _Ready() {
@@ -35,11 +35,17 @@ public class SaveLoadCSharpScriptScene : Button {
     directory.Remove(_fileLocation);
   }
 
-  private void OnSaveLoadCSharpScriptScenePressed() {
-    var scene = _scenePrefab.Instance() as Node2D;
+  private void OnSaveLoadButtonPressed() {
+    var scene = GD.Load<PackedScene>(_scenePrefabPath).Instance() as Node2D;
     Save(scene);
     var node = Load();
-    GD.Print("Returned node is: ", node);
+    GD.Print(string.Format("Returned node from {0} is {1}", this.Text, node));
+
+    GD.Print("    Adding child node " + node);
+    AddChild(node);
+    RemoveChild(node);
+    GD.Print("    Removing child node " + node);
+
     Delete();
   }
 }

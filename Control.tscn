@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://SaveLoadNoScriptScene.cs" type="Script" id=1]
-[ext_resource path="res://SaveLoadCSharpScriptScene.cs" type="Script" id=2]
+[ext_resource path="res://SaveLoadButton.cs" type="Script" id=1]
 
 [node name="Control" type="Control"]
 margin_right = 40.0
@@ -24,12 +23,23 @@ margin_right = 80.0
 margin_bottom = 20.0
 text = "NO SCRIPT"
 script = ExtResource( 1 )
+_scenePrefabPath = "res://NoScriptScene.tscn"
 
 [node name="SaveLoadCSharpScriptScene" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 80.0
 margin_bottom = 44.0
-text = "SCRIPT"
-script = ExtResource( 2 )
-[connection signal="pressed" from="VBoxContainer/SaveLoadNoScriptScene" to="VBoxContainer/SaveLoadNoScriptScene" method="OnSaveLoadNoScriptScenePressed"]
-[connection signal="pressed" from="VBoxContainer/SaveLoadCSharpScriptScene" to="VBoxContainer/SaveLoadCSharpScriptScene" method="OnSaveLoadCSharpScriptScenePressed"]
+text = "C# SCRIPT"
+script = ExtResource( 1 )
+_scenePrefabPath = "res://CSharpScriptScene.tscn"
+
+[node name="SaveLoadGDScriptScene2" type="Button" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 80.0
+margin_bottom = 68.0
+text = "GDSCRIPT"
+script = ExtResource( 1 )
+_scenePrefabPath = "res://GDScriptScene.tscn"
+[connection signal="pressed" from="VBoxContainer/SaveLoadNoScriptScene" to="VBoxContainer/SaveLoadNoScriptScene" method="OnSaveLoadButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/SaveLoadCSharpScriptScene" to="VBoxContainer/SaveLoadCSharpScriptScene" method="OnSaveLoadButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/SaveLoadGDScriptScene2" to="VBoxContainer/SaveLoadGDScriptScene2" method="OnSaveLoadButtonPressed"]
