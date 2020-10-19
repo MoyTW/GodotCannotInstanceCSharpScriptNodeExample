@@ -39,12 +39,14 @@ public class SaveLoadButton : Button {
     var scene = GD.Load<PackedScene>(_scenePrefabPath).Instance() as Node2D;
     Save(scene);
     var node = Load();
-    GD.Print(string.Format("Returned node from {0} is {1}", this.Text, node));
+    GD.Print(string.Format("Returned node from {0} is {1}. Can cast to CSharpScriptScene: {2}",
+      this.Text, node, node is CSharpScriptScene));
 
     GD.Print("    Adding child node " + node);
     AddChild(node);
     RemoveChild(node);
     GD.Print("    Removing child node " + node);
+    GD.Print("");
 
     Delete();
   }
